@@ -1,5 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import {isAuthenticated} from './services/auth';
 
 import Logon from './pages/Logon';
 import Register from './pages/Register';
@@ -12,9 +15,23 @@ export default function Routes() {
             <Switch>
                 <Route path="/" exact component={Logon} />
                 <Route path="/register" component={Register} />
-                <Route path="/profile" component={Profile} />
-                <Route path="/incidents/new" component={Newincident} />
+                <PrivateRoute path="/profile" component={Profile} />
+                <PrivateRoute path="/incidents/new" component={Newincident} />
             </Switch>
         </BrowserRouter>
     );
 }
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest}
+        render={props =>
+            isAuthenticated() ? 
+            (
+                <Component {...props} />
+            ) : (<>
+                {toast.warn('Sessão finalizada.')}
+                <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+            </>)
+        }
+    />
+);

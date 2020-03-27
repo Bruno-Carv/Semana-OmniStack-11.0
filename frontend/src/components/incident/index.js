@@ -3,7 +3,8 @@ import { FiTrash2 } from 'react-icons/fi';
 
 import './styles.css';
 
-export default function Incidents({ key, title, description, value }){
+export default function Incidents({ key, title, description, value, onClick }){
+
     return(
         <li key={key}>
             <strong>CASO:</strong>
@@ -15,7 +16,7 @@ export default function Incidents({ key, title, description, value }){
             <strong>VALOR:</strong>
             <p>{Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL' }).format(value)}</p>
 
-            <button type="button">
+            <button type="button" onClick={onClick}>
                 <FiTrash2 size={20} colro="#a8a8b3" />
             </button>
         </li>

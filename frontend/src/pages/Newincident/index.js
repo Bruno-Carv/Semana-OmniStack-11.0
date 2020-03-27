@@ -1,12 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
+import Input from 'react-input-mask';
 
 import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
 
 export default function Newincident() {
+
     return (
         <div className="new-incident-container">
             <div className="content">
@@ -25,7 +27,11 @@ export default function Newincident() {
                     <input placeholder="Título do caso" />
                     <textarea placeholder="Descrição"/>
                     
-                    <input placeholder="Valor em reais" />
+                    <Input 
+                        placeholder="Valor em reais" 
+                        mask='9999999999'
+                        maskChar={null}
+                    />
 
                     <button className="button" type="submit">Cadastrar</button>
                 </form>

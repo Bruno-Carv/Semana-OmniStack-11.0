@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
+import { toast } from 'react-toastify';
+import Input from 'react-input-mask';
 
 import api from '../../services/api';
 import './styles.css';
@@ -28,10 +30,13 @@ export default function Register() {
         };
         try{
             const response = await api.post('ongs',data);
-            alert(`Seu ID de acesso ${response.data.id}`);
+            
+            toast.success(`Seu ID de acesso ${response.data.id}`,{
+                autoClose: 20000
+            });
             history.push('/');
         }catch(err){
-            alert('Erro no cadastro, tente novamente.');
+            toast.error('Erro no cadastro, tente novamente.');
         }
     }
 
@@ -61,10 +66,12 @@ export default function Register() {
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                     />
-                    <input 
+                    <Input 
+                        mask='(99) 99999-9999'
                         placeholder="WhatsApp" 
                         value={whatsapp}
                         onChange={(event) => setWhatsapp(event.target.value)}
+                        maskChar={null}
                     />
 
                     <div className="input-group">
@@ -73,11 +80,13 @@ export default function Register() {
                             value={city}
                             onChange={(event) => setCity(event.target.value)}
                         />
-                        <input 
+                        <Input 
                             placeholder="UF" 
                             style={{width:80}}
                             value={uf}
                             onChange={(event) => setUf(event.target.value)}
+                            mask='aa'
+                            maskChar={null}
                         />
                     </div>
 
