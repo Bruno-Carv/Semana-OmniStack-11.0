@@ -15,7 +15,7 @@ const HEADER_COLLAPSED_HEIGHT = 80;
 
 const { width: SCREEN_WIDTH } = Dimensions.get("screen")
 
-export default function ListIncidents({header, data, renderItem, keyExtractor, showsHorizontalScrollIndicator}) {
+export default function ListIncidents({header, data, renderItem, keyExtractor, showsHorizontalScrollIndicator, onEndReached, onEndReachedThreshold, showsVerticalScrollIndicator}) {
   
   const [scrollY, setScrollY] = useState(new Animated.Value(0));
 
@@ -43,8 +43,11 @@ export default function ListIncidents({header, data, renderItem, keyExtractor, s
               }
             }])
           }
+          onEndReached={onEndReached}
+          onEndReachedThreshold={onEndReachedThreshold}
+          showsVerticalScrollIndicator={showsVerticalScrollIndicator}
           showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
-          scrollEventThrottle={10}
+          scrollEventThrottle={16}
           data={data}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
