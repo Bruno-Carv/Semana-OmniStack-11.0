@@ -13,6 +13,19 @@ module.exports = {
     useNullAsDefault: true,
   },
 
+  // development: {
+  //   client: 'mysql',
+  //   connection: {
+  //     database: 'bethehero',
+  //     user:     'username',
+  //     password: 'password'
+  //   },
+  //   migrations:{
+  //     directory: './src/database/migrations'
+  //   },
+  //   useNullAsDefault: true,
+  // },
+
   staging: {
     client: 'postgresql',
     connection: {

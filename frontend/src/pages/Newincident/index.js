@@ -1,13 +1,44 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React,{useState} from 'react';
+import {Link, useHistory} from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import Input from 'react-input-mask';
+import {toast} from 'react-toastify';
+
+import {getToken} from '../../services/auth';
+import api from '../../services/api';
 
 import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
 
 export default function Newincident() {
+
+    const ongId = getToken();
+    const history = useHistory();
+    
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [value, setValue] = useState('');
+
+    async function handlerRegisterNewIncident(e){
+        e.preventDefault();
+        const data = {
+            title, 
+            description,
+            value,
+        }
+        try{
+            await api.post('incidents',data,{
+                headers:{
+                    Authorization: ongId
+                }
+            });
+            toast.success(`Incidente criado com sucesso.`);
+            history.push('/profile');
+        }catch(err){
+            toast.error('Erro no cadastro, tente novamente.');
+        }
+    }
 
     return (
         <div className="new-incident-container">
@@ -23,12 +54,22 @@ export default function Newincident() {
                         Voltar para home
                     </Link>
                 </section>
-                <form>
-                    <input placeholder="Título do caso" />
-                    <textarea placeholder="Descrição"/>
+                <form onSubmit={handlerRegisterNewIncident}>
+                    <input 
+                        placeholder="Título do caso" 
+                        value={title}
+                        onChange={event => setTitle(event.target.value)}
+                    />
+                    <textarea 
+                        placeholder="Descrição" 
+                        value={description}
+                        onChange={event => setDescription(event.target.value)}
+                    />
                     
                     <Input 
                         placeholder="Valor em reais" 
+                        value={value}
+                        onChange={event => setValue(event.target.value)}
                         mask='9999999999'
                         maskChar={null}
                     />

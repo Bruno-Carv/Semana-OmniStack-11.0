@@ -25,13 +25,16 @@ module.exports = {
     async create (request, response ){
         const { title, description, value } = request.body;
         const  ong_id  = request.headers.authorization;
-        const [id] = await connection('incidents').insert({
-            title,
-            description,
-            value,
-            ong_id,
-        });
-        return response.json({id});
+        if(title != '' && description != '' && value != ''){
+            const [id] = await connection('incidents').insert({
+                title,
+                description,
+                value,
+                ong_id,
+            });
+            return response.json({id});
+        }
+        return response.status(401).json({ error: 'Operation not permitted. '}); 
     },
 
     async delete(request, response){

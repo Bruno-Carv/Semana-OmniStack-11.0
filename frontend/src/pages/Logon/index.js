@@ -17,8 +17,8 @@ export default function Logon() {
     async function handleLogin(event) {
         event.preventDefault();
         try{
-            const reponse = await api.post('session', { id });
-            sessionStorage.setItem('ongName', reponse.data.name);
+            const response = await api.post('session', { id });
+            sessionStorage.setItem('ongName', response.data.name);
             login(id);
             history.push('/profile');
         }catch(err){
