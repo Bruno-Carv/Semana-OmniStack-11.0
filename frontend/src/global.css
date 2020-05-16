@@ -42,6 +42,10 @@ form textarea {
     resize: vertical;
 }
 
+a:hover{
+    text-decoration: none;
+}
+
 .button{
     width: 100%;
     height: 60px;

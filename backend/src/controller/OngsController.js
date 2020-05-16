@@ -1,5 +1,5 @@
+const genareteUniqueId = require('../utils/generateUniqueId');
 const connection = require('../database/connection');
-
 const crypto = require('crypto');
 
 
@@ -14,18 +14,14 @@ module.exports = {
 
         const {name, email, whatsapp, city, uf} = request.body;
         const id = crypto.randomBytes(4).toString('HEX');
-        
-        if(name != '' && email != '' && whatsapp != '' && city != '' && uf != ''){
-            await connection('ongs').insert({
-                id,
-                name,
-                email,
-                whatsapp,
-                city,
-                uf,
-            });
-            return response.json({ id });
-        }
-        return response.status(401).json({ error: 'Operation not permitted. '});
+        await connection('ongs').insert({
+            id,
+            name,
+            email,
+            whatsapp,
+            city,
+            uf,
+        });
+        return response.json({ id });        
     }
 }

@@ -47,7 +47,7 @@ export default function ListIncidents({header, data, renderItem, keyExtractor, s
           onEndReachedThreshold={onEndReachedThreshold}
           showsVerticalScrollIndicator={showsVerticalScrollIndicator}
           showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
-          scrollEventThrottle={16}
+          scrollEventThrottle={30}
           data={data}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
