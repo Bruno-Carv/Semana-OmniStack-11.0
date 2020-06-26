@@ -8,14 +8,14 @@
 
 ## Tabela de Conteúdo
 
-- [Tabela de Conteúdo](#tabela-de-conte%C3%BAdo)
+- [Tabela de Conteúdo](#tabela-de-conteúdo)
 - [Sobre o Projeto](#sobre-o-Projeto)
-  - [Tecnologias aplicadas](#Tecnologias-aplicadas)
-- [Interface da aplicação](#Interface-da-aplicação)
+  - [Tecnologias aplicadas](#tecnologias-aplicadas)
+- [Interface da aplicação](#interface-da-aplicação)
 - [Começando](#Começando)
-  - [Pré-requisitos](#Pré-requisitos)
+  - [Pré-requisitos](#pré-requisitos)
   - [Estrutura de Arquivos](#estrutura-de-arquivos)
-- [Licença](#licen%C3%A7a)
+- [Licença](#licença)
 - [Contato](#contato)
 
 ## Sobre o Projeto
